@@ -1,7 +1,14 @@
-import { Button } from "./_components/ui/button"
+import SubHeader from "./_components/subHeader"
+import Header from "./_components/header"
 
 const Home = () => {
-  return <Button className="">Teste</Button>
+  return (
+    <div>
+      {/* Header Component render*/}
+      <Header />
+      <SubHeader />
+    </div>
+  )
 }
 
 export default Home
