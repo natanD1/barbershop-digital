@@ -40,21 +40,26 @@ const subHeader = () => {
       <Card className="mt-6">
         <CardContent className="flex justify-between p-0">
           {/* Esquerda */}
-          <div className="flex flex-col gap-2 px-5 py-5">
-            <Badge className="w-fit">Confirmado</Badge>
+          <div className="flex flex-col gap-2 py-5 pl-5">
+            <Badge className="w-fit bg-[#221C3D] text-[#8162FF]">
+              Confirmado
+            </Badge>
 
             <h3 className="font-semibold">Corte de Cabelo</h3>
 
             <div className="flex items-center gap-2">
               <Avatar className="h-6 w-6">
-                <AvatarImage src="./Logo.svg"></AvatarImage>
+                <AvatarImage
+                  alt="Foto de Perfil"
+                  src="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"
+                ></AvatarImage>
               </Avatar>
-              <p className="text-sm">A Cara do Pai</p>
+              <p className="text-sm">Barbearia Calabreso</p>
             </div>
           </div>
 
           {/* Direito */}
-          <div className="flex flex-col items-center justify-center border-l border-solid px-5">
+          <div className="flex flex-col items-center justify-center border-l-2 border-solid px-5">
             <p className="text-sm">Agosto</p>
             <p className="text-2xl">29</p>
             <p className="text-sm">23:36</p>
