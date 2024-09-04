@@ -1,5 +1,5 @@
 import Header from "./_components/header"
-import { SearchIcon } from "lucide-react"
+import { Eye, FootprintsIcon, SearchIcon } from "lucide-react"
 import { Button } from "./_components/ui/button"
 import { Input } from "./_components/ui/input"
 import Image from "next/image"
@@ -8,9 +8,15 @@ import { Badge } from "./_components/ui/badge"
 import { Avatar, AvatarImage } from "./_components/ui/avatar"
 import { db } from "./_lib/prisma"
 import BarbershopItem from "./_components/barbershop"
+import Footer from "./_components/footer"
 
 const Home = async () => {
   const barbershops = await db.barbershop.findMany({})
+  const popularBarberShops = await db.barbershop.findMany({
+    orderBy: {
+      name: "desc",
+    },
+  })
 
   return (
     <div>
@@ -31,11 +37,33 @@ const Home = async () => {
           </Button>
         </div>
 
-        {/* <div className="grid grid-cols-3 gap-3 pt-6">
-          <Button variant="outline">Cabelo</Button>
-          <Button variant="outline">Barba</Button>
-          <Button variant="outline">Acabamento</Button>
-        </div> */}
+        <div className="mt-6 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
+          <Button className="gap-2 border" variant="secondary">
+            <Image alt="Tesoura" width={16} height={16} src="/cut-icon.svg" />
+            Cabelo
+          </Button>
+          <Button className="gap-2 border" variant="secondary">
+            <Image
+              alt="Tesoura"
+              width={16}
+              height={16}
+              src="/mustache-icon.svg"
+            />
+            Barba
+          </Button>
+          <Button className="gap-2 border" variant="secondary">
+            <Image alt="Tesoura" width={16} height={16} src="/razor-icon.svg" />
+            Acabamento
+          </Button>
+          <Button className="gap-2 border" variant="secondary">
+            <FootprintsIcon size={16} />
+            Pezinho
+          </Button>
+          <Button className="gap-2 border" variant="secondary">
+            <Eye size={16} />
+            Sobrancelha
+          </Button>
+        </div>
 
         {/* Banner */}
         <div className="relative mt-6 h-[150px] w-full">
@@ -89,7 +117,17 @@ const Home = async () => {
             <BarbershopItem key={barbershop.id} barbershop={barbershop} />
           ))}
         </div>
+
+        <h2 className="mb-3 mt-6 text-xs uppercase text-gray-400">Populares</h2>
+
+        <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
+          {popularBarberShops.map((barbershop) => (
+            <BarbershopItem key={barbershop.id} barbershop={barbershop} />
+          ))}
+        </div>
       </div>
+
+      <Footer />
     </div>
   )
 }
